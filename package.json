@@ -20,10 +20,25 @@
   "bugs": {
     "url": "https://github.com/Sean-Der/fail2web/issues"
   },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+      ]
+  },
+  "browser": {
+    "angular-ui": "./libs/ui-bootstrap-tpls-0.11.0.min.js"
+  },
+  "browserify-shim": {
+    "angular-ui": {
+      "exports": null,
+      "depends": ["angular"]
+    }
+  },
   "devDependencies": {
     "watchify": "^0.10.2",
     "angular": "^1.2.16",
     "browserify": "^4.1.10",
-    "lodash": "^2.4.1"
+    "lodash": "^2.4.1",
+    "browserify-shim": "^3.5.0"
   }
 }

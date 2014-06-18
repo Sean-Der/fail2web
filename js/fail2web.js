@@ -1,10 +1,11 @@
 'use strict';
 
+require('angular-ui');
+
 var angular = require('angular'),
-    fail2webConfig = require('./services/fail2webConfig'),
     _ = require('lodash');
 
-angular.module('fail2web', [fail2webConfig]).
+angular.module('fail2web', [require('./services/fail2webConfig'), 'ui.bootstrap']).
   controller('fail2webLanding', ['$scope', 'globalConfig', '$http', '$q', function($scope, globalConfig, $http, $q) {
     globalConfig.then(function(config) {
       $http({method: 'GET', url: config.fail2rest + 'global/status'}).
