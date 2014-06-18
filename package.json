@@ -1,0 +1,29 @@
+{
+  "name": "fail2web",
+  "version": "0.0.1",
+  "description": "fail2web is an fail2ban GUI powered by fail2rest",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "watchify js/fail2web.js -o web/bundle.js",
+    "build": "browserify js/app.js -o web/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/Sean-Der/fail2web.git"
+  },
+  "keywords": [
+    "fail2ban"
+  ],
+  "author": "Sean-Der",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sean-Der/fail2web/issues"
+  },
+  "devDependencies": {
+    "watchify": "^0.10.2",
+    "angular": "^1.2.16",
+    "browserify": "^4.1.10",
+    "lodash": "^2.4.1"
+  }
+}

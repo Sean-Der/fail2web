@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html ng-app="fail2web">
+  <head>
+    <title>fail2web</title>
+  </head>
+  <body>
+    <div data-ng-controller="fail2webLanding">
+      <div data-ng-repeat="jail in jailStats">
+        {{jail | json}}
+      </div>
+
+    </div>
+  <script src="bundle.js"></script>
+  </body>
+</html>
