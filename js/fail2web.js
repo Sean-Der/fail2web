@@ -3,7 +3,11 @@
 require('angular-ui');
 
 var angular = require('angular'),
-    _ = require('lodash');
+    fs = require('fs'),
+    _ = require('lodash'),
+    insertCss = require('insert-css');
+
+insertCss(fs.readFileSync('node_modules/bootstrap/dist/css/bootstrap.min.css'));
 
 angular.module('fail2web', [require('./services/fail2webConfig'), 'ui.bootstrap']).
   controller('fail2webLanding', ['$scope', 'globalConfig', '$http', '$q', function($scope, globalConfig, $http, $q) {

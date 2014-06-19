@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "watchify js/fail2web.js -o web/bundle.js",
-    "build": "browserify js/app.js -o web/bundle.js"
+    "watch": "watchify -t brfs js/fail2web.js -o web/bundle.js",
+    "build": "browserify -t brfs js/fail2web.js -o web/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
   "browserify": {
     "transform": [
       "browserify-shim"
-      ]
+    ]
   },
   "browser": {
     "angular-ui": "./libs/ui-bootstrap-tpls-0.11.0.min.js"
@@ -31,7 +31,9 @@
   "browserify-shim": {
     "angular-ui": {
       "exports": null,
-      "depends": ["angular"]
+      "depends": [
+        "angular"
+      ]
     }
   },
   "devDependencies": {
@@ -39,6 +41,9 @@
     "angular": "^1.2.16",
     "browserify": "^4.1.10",
     "lodash": "^2.4.1",
-    "browserify-shim": "^3.5.0"
+    "browserify-shim": "^3.5.0",
+    "bootstrap": "^3.1.1",
+    "insert-css": "^0.2.0",
+    "brfs": "1.0.2"
   }
 }
