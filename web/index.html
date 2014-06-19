@@ -53,8 +53,20 @@
 
                     <div class="col-md-12">
                       <h4>IP List</h4>
-                      <p class="well" data-ng-repeat="ip in activeJail.data.IPList"> {{ip}} </p>
+                      <div class="list-group">
+                        <a href="#" ng-click="clickUnBanIPAddress(ip)" class="list-group-item" data-ng-repeat="ip in activeJail.data.IPList">
+                          {{ip}} <span style="color: red" class="glyphicon glyphicon-remove"></span>
+                        </a>
+                      </div>
                     </div>
+
+                    <form class="col-md-12 form-inline" role="form">
+                      <div class="form-group">
+                        <label class="sr-only" for="banIPAddress">IP Address</label>
+                        <input type="text" class="form-control" id="banIPAddress" ng-model="banIPAddress" placeholder="Enter IP Address">
+                      </div>
+                      <button type="submit" class="btn btn-danger" ng-click="clickBanIPAddress(banIPAddress)">Ban IP Address</button>
+                    </form>
 
                     <div class="col-md-12">
                       <h4>Fail Regex</h4>
@@ -66,11 +78,11 @@
                       <p class="well" data-ng-repeat="file in activeJail.data.fileList"> {{file}} </p>
                     </div>
 
+
+
                 </div>
             </div>
-
         </div>
     </div>
-
   </body>
 </html>

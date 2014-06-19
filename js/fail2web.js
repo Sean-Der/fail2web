@@ -26,5 +26,11 @@ angular.module('fail2web', [require('./services/fail2webConfig'),
         });
     });
   }]).controller('jailDisplay', ['$scope', 'activeJail',  function($scope, activeJail) {
+    $scope.clickBanIPAddress = function(ipAddress) {
+        activeJail.banIPAddress(ipAddress);
+    };
+    $scope.clickUnBanIPAddress = function(ipAddress) {
+        activeJail.unBanIPAddress(ipAddress);
+    };
     $scope.activeJail = activeJail.get();
   }]);
