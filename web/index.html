@@ -1,15 +1,76 @@
 <!DOCTYPE html>
 <html ng-app="fail2web">
   <head>
-    <title>fail2web</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="fail2web GUI for fail2ban">
+      <meta name="author" content="Sean DuBois">
+      <script src="bundle.js"></script>
+      <title>fail2web</title>
   </head>
   <body>
-    <div data-ng-controller="fail2webLanding">
-      <div data-ng-repeat="jail in jailStats">
-        {{jail | json}}
-      </div>
 
+    <div id="wrapper">
+
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav" data-ng-controller="sidebar">
+                <li class="sidebar-brand">
+                  <a href="#">fail2web</a>
+                </li>
+                <li data-ng-repeat="jail in jails">
+                  <a href="#" ng-click="setActiveJail(jail)">{{jail}}</a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="page-content-wrapper" data-ng-controller="jailDisplay">
+
+            <div class="content-header">
+                <h1>
+                    <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder">i</i></a>
+                     {{activeJail.name}}
+                </h1>
+            </div>
+
+            <div class="page-content inset">
+                <div class="row">
+
+                    <div class="col-md-12">
+                      <h4>Total Failed - {{activeJail.data.totalFailed}}</h4>
+                    </div>
+
+                    <div class="col-md-12">
+                      <h4>Total Banned - {{activeJail.data.totalBanned}}</h4>
+                    </div>
+
+                    <div class="col-md-12">
+                      <h4>Currently Banned- {{activeJail.data.currentlyBanned}}</h4>
+                    </div>
+
+                    <div class="col-md-12">
+                      <h4>Currently Failed - {{activeJail.data.currentlyFailed}}</h4>
+                    </div>
+
+                    <div class="col-md-12">
+                      <h4>IP List</h4>
+                      <p class="well" data-ng-repeat="ip in activeJail.data.IPList"> {{ip}} </p>
+                    </div>
+
+                    <div class="col-md-12">
+                      <h4>Fail Regex</h4>
+                      <p class="well" data-ng-repeat="regex in activeJail.data.failregex"> {{regex}} </p>
+                    </div>
+
+                    <div class="col-md-12">
+                      <h4>fileList</h4>
+                      <p class="well" data-ng-repeat="file in activeJail.data.fileList"> {{file}} </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
     </div>
-  <script src="bundle.js"></script>
+
   </body>
 </html>

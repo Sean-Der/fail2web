@@ -8,19 +8,23 @@ var angular = require('angular'),
     insertCss = require('insert-css');
 
 insertCss(fs.readFileSync('node_modules/bootstrap/dist/css/bootstrap.min.css'));
+insertCss(fs.readFileSync('css/sidebar.css'));
 
-angular.module('fail2web', [require('./services/fail2webConfig'), 'ui.bootstrap']).
-  controller('fail2webLanding', ['$scope', 'globalConfig', '$http', '$q', function($scope, globalConfig, $http, $q) {
+angular.module('fail2web', [require('./services/fail2webConfig'),
+                            require('./services/activeJail'),
+                            'ui.bootstrap']).
+  controller('sidebar', ['$scope', 'globalConfig', '$http', '$q', 'activeJail', function($scope, globalConfig, $http, $q, activeJail) {
+    $scope.setActiveJail = function(jail) {
+      activeJail.set(jail);
+    };
+
     globalConfig.then(function(config) {
       $http({method: 'GET', url: config.fail2rest + 'global/status'}).
         success(function(jails) {
-          $q.all(_.map(jails, function(jail) {
-            var defer = $q.defer();
-            $http({method: 'GET', url: config.fail2rest + 'jail/' + jail}).success(defer.resolve);
-            return defer.promise;
-          })).then(function(jailStats) {
-            $scope.jailStats = jailStats;
-          });
+          $scope.jails = jails;
+          activeJail.set(jails[0]);
         });
     });
+  }]).controller('jailDisplay', ['$scope', 'activeJail',  function($scope, activeJail) {
+    $scope.activeJail = activeJail.get();
   }]);
