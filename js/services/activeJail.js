@@ -24,7 +24,7 @@ angular.module(module.exports, [require('./fail2webConfig')]).
       },
       banIPAddress: function(ipAddress) {
         globalConfig.then(function(config) {
-          $http({method: 'POST', data: {IP: ipAddress }, url: config.fail2rest + 'jail/' + activeJail.name + '/banip'}).
+          $http({method: 'POST', data: {IP: ipAddress }, url: config.fail2rest + 'jail/' + activeJail.name + '/bannedips'}).
           success(function() {
             if (activeJail.data.IPList.indexOf(ipAddress) === -1) {
                 activeJail.data.IPList.push(ipAddress);
@@ -36,7 +36,7 @@ angular.module(module.exports, [require('./fail2webConfig')]).
       },
       unBanIPAddress: function(ipAddress) {
         globalConfig.then(function(config) {
-          $http({method: 'POST', data: {IP: ipAddress }, url: config.fail2rest + 'jail/' + activeJail.name + '/unbanip'}).
+          $http({method: 'DELETE', data: {IP: ipAddress }, url: config.fail2rest + 'jail/' + activeJail.name + '/bannedips'}).
           success(function() {
             var index = activeJail.data.IPList.indexOf(ipAddress);
             if (index !== -1) {
