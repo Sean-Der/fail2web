@@ -4,7 +4,6 @@ require('angular-ui');
 
 var angular = require('angular'),
     fs = require('fs'),
-    _ = require('lodash'),
     insertCss = require('insert-css');
 
 insertCss(fs.readFileSync('node_modules/bootstrap/dist/css/bootstrap.min.css'));

@@ -2,8 +2,7 @@
 
 module.exports = 'fail2web.activeJail';
 
-var angular = require('angular'),
-    _ = require('lodash');
+var angular = require('angular');
 
 angular.module(module.exports, [require('./fail2webConfig')]).
   service('activeJail', ['$http', 'globalConfig', function($http, globalConfig) {

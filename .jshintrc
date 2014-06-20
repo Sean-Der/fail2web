@@ -14,6 +14,7 @@
     "undef"         : true,     // Require all non-global variables be declared before they are used.
     "strict"        : true,     // Require `use strict` pragma in every file.
     "trailing"      : true,     // Prohibit trailing whitespaces.
+    "unused"        : true,     // Prohibit unused variables
 
     "asi"           : false,    // Tolerate Automatic Semicolon Insertion (no semicolons).
     "boss"          : false,    // Tolerate assignments inside if, for & while. Usually conditions & loops are for comparison, not assignments.
