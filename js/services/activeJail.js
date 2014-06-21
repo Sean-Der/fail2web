@@ -44,6 +44,17 @@ angular.module(module.exports, [require('./fail2webConfig')]).
             }
           });
         });
+      },
+      deleteFailRegex: function(regex) {
+        globalConfig.then(function(config) {
+          $http({method: 'DELETE', data: {FailRegex: regex}, url: config.fail2rest + 'jail/' + activeJail.name + '/failregex'}).
+          success(function() {
+            var index = activeJail.data.failRegexes.indexOf(regex);
+            if (index !== -1) {
+              activeJail.data.failRegexes.splice(index, 1);
+            }
+          });
+        });
       }
     };
 }]);

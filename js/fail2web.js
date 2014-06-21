@@ -31,5 +31,8 @@ angular.module('fail2web', [require('./services/fail2webConfig'),
     $scope.clickUnBanIPAddress = function(ipAddress) {
         activeJail.unBanIPAddress(ipAddress);
     };
+    $scope.clickDeleteFailRegex = function(regex) {
+      activeJail.deleteFailRegex(regex);
+    };
     $scope.activeJail = activeJail.get();
   }]);

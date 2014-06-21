@@ -68,17 +68,20 @@
                       <button type="submit" class="btn btn-danger" ng-click="clickBanIPAddress(banIPAddress)">Ban IP Address</button>
                     </form>
 
+
                     <div class="col-md-12">
-                      <h4>Fail Regex</h4>
-                      <p class="well" data-ng-repeat="regex in activeJail.data.failregex"> {{regex}} </p>
+                      <h4>Fail Regexes</h4>
+                      <div class="list-group">
+                        <a href="#" ng-click="clickDeleteFailRegex(regex)" class="list-group-item" data-ng-repeat="regex in activeJail.data.failRegexes track by $index">
+                          {{regex}} <span style="color: red" class="glyphicon glyphicon-remove"></span>
+                        </a>
+                      </div>
                     </div>
 
                     <div class="col-md-12">
                       <h4>fileList</h4>
                       <p class="well" data-ng-repeat="file in activeJail.data.fileList"> {{file}} </p>
                     </div>
-
-
 
                 </div>
             </div>
