@@ -55,6 +55,15 @@ angular.module(module.exports, [require('./fail2webConfig')]).
             }
           });
         });
-      }
+      },
+      addFailRegex: function(regex) {
+        globalConfig.then(function(config) {
+          $http({method: 'POST', data: {FailRegex: regex}, url: config.fail2rest + 'jail/' + activeJail.name + '/failregex'}).
+          success(function() {
+            activeJail.data.failRegexes.push(regex);
+          });
+        });
+      },
+
     };
 }]);

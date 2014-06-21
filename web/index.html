@@ -78,6 +78,15 @@
                       </div>
                     </div>
 
+                    <form class="col-md-12 form-inline" role="form">
+                      <div class="form-group">
+                        <label class="sr-only" for="addFailRegex">Fail Regex</label>
+                        <textarea class="form-control" ng-model="addFailRegex" placeholder="Enter Fail Regex"> </textarea>
+                      </div>
+                      <button type="submit" class="btn btn-danger" ng-click="clickAddFailRegex(addFailRegex)">Add Fail Regex</button>
+                    </form>
+
+
                     <div class="col-md-12">
                       <h4>fileList</h4>
                       <p class="well" data-ng-repeat="file in activeJail.data.fileList"> {{file}} </p>

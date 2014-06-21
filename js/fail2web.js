@@ -34,5 +34,8 @@ angular.module('fail2web', [require('./services/fail2webConfig'),
     $scope.clickDeleteFailRegex = function(regex) {
       activeJail.deleteFailRegex(regex);
     };
+    $scope.clickAddFailRegex = function(regex) {
+      activeJail.addFailRegex(regex);
+    };
     $scope.activeJail = activeJail.get();
   }]);
