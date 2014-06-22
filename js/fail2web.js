@@ -1,6 +1,7 @@
 'use strict';
 
 require('angular-ui');
+require('../libs/angular-animate-1.2.18.min.js');
 
 var angular = require('angular'),
     fs = require('fs'),
@@ -11,10 +12,16 @@ insertCss(fs.readFileSync('css/sidebar.css'));
 
 angular.module('fail2web', [require('./services/fail2webConfig'),
                             require('./services/activeJail'),
+                            'ngAnimate',
                             'ui.bootstrap']).
   controller('sidebar', ['$scope', 'globalConfig', '$http', '$q', 'activeJail', function($scope, globalConfig, $http, $q, activeJail) {
+    $scope.activeJail = activeJail.get();
     $scope.setActiveJail = function(jail) {
       activeJail.set(jail);
+    };
+
+    $scope.setCurrentView = function(view) {
+        activeJail.setCurrentView(view);
     };
 
     globalConfig.then(function(config) {
