@@ -38,10 +38,10 @@
   },
   "devDependencies": {
     "watchify": "^0.10.2",
-    "angular": "^1.2.16",
-    "browserify": "^4.1.10",
+    "angular": "^1.2.18",
+    "browserify": "^4.1.11",
     "lodash": "^2.4.1",
-    "browserify-shim": "^3.5.0",
+    "browserify-shim": "^3.6.0",
     "bootstrap": "^3.1.1",
     "insert-css": "^0.2.0",
     "brfs": "1.0.2"
