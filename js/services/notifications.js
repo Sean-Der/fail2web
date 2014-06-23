@@ -23,7 +23,7 @@ angular.module(module.exports, []).
           return;
         }
         if (notifications[index].amount === 1) {
-          delete notifications[index];
+          notifications.splice(index, 1);
         } else {
           notifications[index].amount -= 1;
         }

@@ -5,7 +5,7 @@ module.exports = 'fail2web.activeJail';
 var angular = require('angular');
 
 angular.module(module.exports, [require('./fail2webConfig')]).
-  service('activeJail', ['$http', 'globalConfig', function($http, globalConfig) {
+  service('activeJail', ['$http', 'globalConfig', 'notifications', function($http, globalConfig, notifications) {
     var activeJail = {name: null,
                       currentView: '',
                       data: {} };
@@ -38,6 +38,8 @@ angular.module(module.exports, [require('./fail2webConfig')]).
                 activeJail.data.currentlyBanned += 1;
                 activeJail.data.totalBanned += 1;
             }
+          }).error(function() {
+             notifications.add({message: 'Unable to ban IP', type: 'error'});
           });
         });
       },
@@ -50,6 +52,8 @@ angular.module(module.exports, [require('./fail2webConfig')]).
               activeJail.data.IPList.splice(index, 1);
               activeJail.data.currentlyBanned -= 1;
             }
+          }).error(function() {
+            notifications.add({message: 'Unable to unban IP', type: 'error'});
           });
         });
       },
@@ -61,6 +65,8 @@ angular.module(module.exports, [require('./fail2webConfig')]).
             if (index !== -1) {
               activeJail.data.failRegexes.splice(index, 1);
             }
+          }).error(function() {
+            notifications.add({message: 'Unable to delete regex', type: 'error'});
           });
         });
       },
@@ -69,6 +75,8 @@ angular.module(module.exports, [require('./fail2webConfig')]).
           $http({method: 'POST', data: {FailRegex: regex}, url: config.fail2rest + 'jail/' + activeJail.name + '/failregex'}).
           success(function() {
             activeJail.data.failRegexes.push(regex);
+          }).error(function(data) {
+            notifications.add({message: data.Error, type: 'error'});
           });
         });
       },
