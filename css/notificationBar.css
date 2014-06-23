@@ -1,0 +1,30 @@
+.notification {
+  color: white;
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+  padding-left: 5em;
+  padding-right: 2em;
+  font-size: 16px;
+}
+
+.notification > span {
+  float: right;
+}
+
+.notification .glyphicon {
+  top: 2px;
+  cursor: pointer;
+}
+
+.notification-error {
+  background-color: red;
+}
+
+.notification-warning {
+  background-color: orange;
+}
+
+.notification-info {
+  background-color: green;
+}
