@@ -26,10 +26,17 @@
     ]
   },
   "browser": {
-    "angular-ui": "./libs/ui-bootstrap-tpls-0.11.0.min.js"
+    "angular-ui": "./libs/ui-bootstrap-tpls-0.11.0.min.js",
+    "angular-animate": "./libs/angular-animate-1.2.18.min.js"
   },
   "browserify-shim": {
     "angular-ui": {
+      "exports": null,
+      "depends": [
+        "angular"
+      ]
+    },
+    "angular-animate": {
       "exports": null,
       "depends": [
         "angular"

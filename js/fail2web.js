@@ -1,7 +1,7 @@
 'use strict';
 
 require('angular-ui');
-require('../libs/angular-animate-1.2.18.min.js');
+require('angular-animate');
 
 var angular = require('angular'),
     fs = require('fs'),
