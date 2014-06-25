@@ -80,6 +80,29 @@ angular.module(module.exports, [require('./fail2webConfig')]).
           });
         });
       },
-
+      setMaxRetry: function(maxRetry) {
+        globalConfig.then(function(config) {
+          $http({method: 'POST', data: {maxRetry: maxRetry}, url: config.fail2rest + 'jail/' + activeJail.name + '/maxretry'}).
+          error(function(data) {
+            notifications.add({message: data.Error, type: 'error'});
+          });
+        });
+      },
+      setFindTime: function(findTime) {
+        globalConfig.then(function(config) {
+          $http({method: 'POST', data: {findTime: findTime}, url: config.fail2rest + 'jail/' + activeJail.name + '/findtime'}).
+          error(function(data) {
+            notifications.add({message: data.Error, type: 'error'});
+          });
+        });
+      },
+      setUseDNS: function(useDNS) {
+        globalConfig.then(function(config) {
+          $http({method: 'POST', data: {useDNS: useDNS}, url: config.fail2rest + 'jail/' + activeJail.name + '/usedns'}).
+          error(function(data) {
+            notifications.add({message: data.Error, type: 'error'});
+          });
+        });
+      }
     };
 }]);

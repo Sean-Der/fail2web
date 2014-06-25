@@ -49,6 +49,11 @@ angular.module('fail2web', [require('./services/fail2webConfig'),
     $scope.clickAddFailRegex = function(regex) {
       activeJail.addFailRegex(regex);
     };
+    $scope.clickOverviewUpdate = function() {
+      activeJail.setMaxRetry($scope.activeJail.data.maxRetry);
+      activeJail.setFindTime($scope.activeJail.data.findTime);
+      activeJail.setUseDNS($scope.activeJail.data.useDNS);
+    };
     $scope.activeJail = activeJail.get();
   }]).controller('notificationBar', ['$scope', 'notifications', function($scope, notifications) {
     $scope.notifications = notifications.get();
