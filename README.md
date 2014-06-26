@@ -59,6 +59,27 @@ which is what the above nginx config is also set to do.
 
 Fail2web then has to communicate with a fail2rest instance, details on how to configure fail2rest can be found [here](https://github.com/Sean-Der/fail2rest)
 
+###Security
+It is very important that you configured fail2rest correctly, a public facing fail2rest server could be very dangerous
+(someone could add inclusive regexes, remove themselves from the banned IP lists etc..)
+
+Out of the box fail2rest has no authentication, and I have no plans of rolling my own authentication. I have used two different methods
+for securing my fail2rest instances.
+
+####HTTP Auth
+In the nginx example above I have enabled HTTP basic auth with the following lines
+
+        auth_basic "Restricted";
+        auth_basic_user_file YOUR_HTPASSWD_FILE;
+
+To generate a HTTPASSWD file you can use the `htpasswd` util distributed with Apache HTTPD
+and `htpasswd -c YOUR_HTPASSWD_FILE USERNAME` will create it.
+
+####Serve on loopback only
+Your other choice would be to serve on the loopback only. You could then use an
+SSH tunnel as a socks proxy.
+
+
 ##License
 The MIT License (MIT)
 
