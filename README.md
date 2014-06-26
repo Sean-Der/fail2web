@@ -39,8 +39,6 @@ To run fail2web you should host it via a HTTP server, the following is an exampl
         listen       80;
         server_name  YOUR_SERVER_NAME;
 
-        access_log  off;
-        error_log off;
         auth_basic "Restricted";
         auth_basic_user_file YOUR_HTPASSWD_FILE;
 
