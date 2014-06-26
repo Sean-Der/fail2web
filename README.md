@@ -54,3 +54,28 @@ To run fail2web you should host it via a HTTP server, the following is an exampl
 Fail2web has only one configuration option available via config.json in the root of the web folder.
 This config option allows you to specify the path to your fail2rest handler. Currently the config.json uses /api/
 which is what the above nginx config is also set to do.
+
+Fail2web then has to communicate with a fail2rest instance, details on how to configure fail2rest can be found [here](https://github.com/Sean-Der/fail2rest)
+
+##License
+The MIT License (MIT)
+
+Copyright (c) 2014 Sean DuBois
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
