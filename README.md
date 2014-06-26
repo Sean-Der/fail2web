@@ -15,7 +15,7 @@ with the following features planned in the future
 * **Regex Testing** - Testing ignore+fail regexes on your current logs to quickly build and debug regexes
 * **More Jail Controls** - Create new jails and expose more settings for current jails
 
--![alt text](http://i.imgur.com/Duy0aKM.gif "fail2web Demo")
+![alt text](http://i.imgur.com/Duy0aKM.gif "fail2web Demo")
 
 ## Installing
 ###Development
