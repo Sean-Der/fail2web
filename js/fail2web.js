@@ -32,9 +32,7 @@ angular.module('fail2web', [require('./services/fail2webConfig'),
           $scope.jails = jails;
           activeJail.set(jails[0]);
         }).
-        error(function() {
-          notifications.add({message: 'Could not contact fail2rest', type: 'error'});
-        });
+        error(notifications.fromHTTPError);
     });
   }]).controller('jailDisplay', ['$scope', 'activeJail',  function($scope, activeJail) {
     $scope.clickBanIPAddress = function(ipAddress) {

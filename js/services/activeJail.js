@@ -17,7 +17,8 @@ angular.module(module.exports, [require('./fail2webConfig')]).
             success(function(data) {
               activeJail.data = data;
               this.setCurrentView('Overview');
-          }.bind(this));
+          }.bind(this)).
+            error(notifications.fromHTTPError);
         }.bind(this));
       },
       setCurrentView: function(view) {
@@ -38,9 +39,8 @@ angular.module(module.exports, [require('./fail2webConfig')]).
                 activeJail.data.currentlyBanned += 1;
                 activeJail.data.totalBanned += 1;
             }
-          }).error(function() {
-             notifications.add({message: 'Unable to ban IP', type: 'error'});
-          });
+          }).
+          error(notifications.fromHTTPError);
         });
       },
       unBanIPAddress: function(ipAddress) {
@@ -52,9 +52,8 @@ angular.module(module.exports, [require('./fail2webConfig')]).
               activeJail.data.IPList.splice(index, 1);
               activeJail.data.currentlyBanned -= 1;
             }
-          }).error(function() {
-            notifications.add({message: 'Unable to unban IP', type: 'error'});
-          });
+          }).
+          error(notifications.fromHTTPError);
         });
       },
       deleteFailRegex: function(regex) {
@@ -65,9 +64,8 @@ angular.module(module.exports, [require('./fail2webConfig')]).
             if (index !== -1) {
               activeJail.data.failRegexes.splice(index, 1);
             }
-          }).error(function() {
-            notifications.add({message: 'Unable to delete regex', type: 'error'});
-          });
+          }).
+          error(notifications.fromHTTPError);
         });
       },
       addFailRegex: function(regex) {
@@ -75,33 +73,26 @@ angular.module(module.exports, [require('./fail2webConfig')]).
           $http({method: 'POST', data: {FailRegex: regex}, url: config.fail2rest + 'jail/' + activeJail.name + '/failregex'}).
           success(function() {
             activeJail.data.failRegexes.push(regex);
-          }).error(function(data) {
-            notifications.add({message: data.Error, type: 'error'});
-          });
+          }).
+          error(notifications.fromHTTPError);
         });
       },
       setMaxRetry: function(maxRetry) {
         globalConfig.then(function(config) {
           $http({method: 'POST', data: {MaxRetry: maxRetry}, url: config.fail2rest + 'jail/' + activeJail.name + '/maxretry'}).
-          error(function(data) {
-            notifications.add({message: data.Error, type: 'error'});
-          });
+          error(notifications.fromHTTPError);
         });
       },
       setFindTime: function(findTime) {
         globalConfig.then(function(config) {
           $http({method: 'POST', data: {FindTime: findTime}, url: config.fail2rest + 'jail/' + activeJail.name + '/findtime'}).
-          error(function(data) {
-            notifications.add({message: data.Error, type: 'error'});
-          });
+          error(notifications.fromHTTPError);
         });
       },
       setUseDNS: function(useDNS) {
         globalConfig.then(function(config) {
           $http({method: 'POST', data: {UseDNS: useDNS}, url: config.fail2rest + 'jail/' + activeJail.name + '/usedns'}).
-          error(function(data) {
-            notifications.add({message: data.Error, type: 'error'});
-          });
+          error(notifications.fromHTTPError);
         });
       }
     };
