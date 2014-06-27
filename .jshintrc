@@ -15,6 +15,7 @@
     "strict"        : true,     // Require `use strict` pragma in every file.
     "trailing"      : true,     // Prohibit trailing whitespaces.
     "unused"        : true,     // Prohibit unused variables
+    "quotmark"      : "single", // Only allow single quoted strings
 
     "asi"           : false,    // Tolerate Automatic Semicolon Insertion (no semicolons).
     "boss"          : false,    // Tolerate assignments inside if, for & while. Usually conditions & loops are for comparison, not assignments.

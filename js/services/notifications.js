@@ -33,9 +33,9 @@ angular.module(module.exports, []).
           },
           fromHTTPError: function(body, code) {
             if (code === 404) {
-              notificationsService.add({message: "404 Page Not Found - Couldn't contact fail2rest", type: 'error'});
+              notificationsService.add({message: '404 Page Not Found - Couldn\'t contact fail2rest', type: 'error'});
             } else if (code === 502) {
-              notificationsService.add({message: "502 Bad Gateway - Couldn't contact fail2rest", type: 'error'});
+              notificationsService.add({message: '502 Bad Gateway - Couldn\'t contact fail2rest', type: 'error'});
             } else if (_.isObject(body) && body.Error) {
               notificationsService.add({message: body.Error, type: 'error'});
             } else {
