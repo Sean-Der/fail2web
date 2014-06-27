@@ -30,7 +30,7 @@ with the following features planned in the future
     * When deploying run `npm run build` this will build once and exit
 
 ###Production
-There is production release of fail2web, but I plan to have one soon.
+There is no production release of fail2web, but I plan to have one soon.
 
 ##Deploying and Configuration
 To run fail2web you should host it via a HTTP server, the following is an example nginx config to do so
