@@ -4,6 +4,10 @@ module.exports = 'fail2web.globalConfig';
 
 var angular = require('angular');
 
+if (!window.location.origin) {
+  window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+}
+
 angular.module(module.exports, []).
   service('globalConfig', ['$http', '$window', '$q', 'notifications', function($http, $window, $q, notifications) {
     var fail2webConfig = $q.defer();
