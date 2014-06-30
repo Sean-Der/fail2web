@@ -4,8 +4,9 @@ module.exports = 'fail2web.globalConfig';
 
 var angular = require('angular');
 
+//window.location.origin pollyfill for Internet Explorer
 if (!window.location.origin) {
-  window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+  window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
 }
 
 angular.module(module.exports, []).
