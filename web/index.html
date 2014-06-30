@@ -19,13 +19,19 @@
       </div>
     </div>
 
+    <nav class="navbar navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">fail2web</a>
+        </div>
+      </div>
+    </nav>
+
+
     <div id="wrapper">
 
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav" data-ng-controller="sidebar">
-                <li class="sidebar-brand">
-                  <a href="#">fail2web</a>
-                </li>
                 <li data-ng-repeat="jail in jails">
                     <a href="#" data-ng-click="setActiveJail(jail)">
                       {{jail}}

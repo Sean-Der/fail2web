@@ -1,0 +1,14 @@
+#wrapper {
+  padding-left: 250px;
+  padding-top: 50px;
+  transition: all 0.4s ease 0s;
+}
+
+#page-content-wrapper {
+  width: 100%;
+}
+
+.inset {
+  padding: 20px;
+}
+

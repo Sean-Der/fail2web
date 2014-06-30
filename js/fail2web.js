@@ -8,8 +8,12 @@ var angular = require('angular'),
     insertCss = require('insert-css');
 
 insertCss(fs.readFileSync('node_modules/bootstrap/dist/css/bootstrap.min.css'));
+
 insertCss(fs.readFileSync('css/sidebar.css'));
 insertCss(fs.readFileSync('css/notificationBar.css'));
+insertCss(fs.readFileSync('css/navbar.css'));
+insertCss(fs.readFileSync('css/base.css'));
+
 
 angular.module('fail2web', [require('./services/fail2webConfig'),
                             require('./services/activeJail'),

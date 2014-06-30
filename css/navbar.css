@@ -1,0 +1,13 @@
+.navbar {
+  background: #000;
+  color: #999999;
+}
+.navbar a {
+  color: #999999;
+}
+.navbar a:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+  text-decoration: none;
+}
+
