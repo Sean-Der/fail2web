@@ -15,11 +15,21 @@ insertCss(fs.readFileSync('css/navbar.css'));
 insertCss(fs.readFileSync('css/base.css'));
 
 
-angular.module('fail2web', [require('./services/fail2webConfig'),
+angular.module('fail2web', [require('./services/globalConfig'),
                             require('./services/activeJail'),
                             require('./services/notifications'),
+                            require('./services/settings'),
                             'ngAnimate',
                             'ui.bootstrap']).
+  controller('navbar', ['$scope', 'settings', function($scope, settings) {
+    $scope.settings = settings.get();
+    $scope.refreshDetails = settings.getRefreshDetails();
+
+    $scope.setRefresh = function(refresh) {
+      settings.set({refresh: refresh});
+    };
+
+  }]).
   controller('sidebar', ['$scope', 'globalConfig', '$http', '$q', 'activeJail', 'notifications', function($scope, globalConfig, $http, $q, activeJail, notifications) {
     $scope.activeJail = activeJail.get();
     $scope.setActiveJail = function(jail) {

@@ -2,24 +2,19 @@
 
 module.exports = 'fail2web.activeJail';
 
-var angular = require('angular');
+var angular = require('angular'),
+    _       = require('lodash');
 
-angular.module(module.exports, [require('./fail2webConfig')]).
+angular.module(module.exports, [require('./globalConfig')]).
   service('activeJail', ['$http', 'globalConfig', 'notifications', function($http, globalConfig, notifications) {
     var activeJail = {name: null,
                       currentView: '',
                       data: {} };
     return {
       set: function(name) {
-        globalConfig.then(function(config) {
-          activeJail.name = name;
-          $http({method: 'GET', url: config.fail2rest + 'jail/' + name}).
-            success(function(data) {
-              activeJail.data = data;
-              this.setCurrentView('Overview');
-          }.bind(this)).
-            error(notifications.fromHTTPError);
-        }.bind(this));
+        activeJail.name = name;
+        this.refresh(false);
+        this.setCurrentView('Overview');
       },
       setCurrentView: function(view) {
         if (['Overview', 'failedIPs', 'failRegexes'].indexOf(view) === -1) {
@@ -29,6 +24,23 @@ angular.module(module.exports, [require('./fail2webConfig')]).
       },
       get: function() {
         return activeJail;
+      },
+      refresh: function(alerts) {
+        globalConfig.then(function(config) {
+          $http({method: 'GET', url: config.fail2rest + 'jail/' + activeJail.name}).
+            success(function(data) {
+              if (alerts && activeJail.data.IPList) {
+                _.forEach(_.difference(activeJail.data.IPList, data.IPList), function(ip) {
+                  notifications.add({message: ip + ' has been unbanned', type: 'warning'});
+                });
+                _.forEach(_.difference(data.IPList, activeJail.data.IPList), function(ip) {
+                  notifications.add({message: ip + ' has been banned', type: 'warning'});
+                });
+              }
+              activeJail.data = data;
+          }.bind(this)).
+            error(notifications.fromHTTPError);
+        }.bind(this));
       },
       banIPAddress: function(ipAddress) {
         globalConfig.then(function(config) {

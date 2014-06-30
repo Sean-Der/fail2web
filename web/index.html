@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="fail2web">
+<html data-ng-app="fail2web">
   <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,17 +19,42 @@
       </div>
     </div>
 
-    <nav class="navbar navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation" data-ng-controller="navbar">
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">fail2web</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                 Refresh
+                 <span data-ng-if="settings.refresh === null" class="badge alert-danger">Disabled</span>
+                 <span data-ng-if="settings.refresh !== null" class="badge alert-success">{{refreshDetails.timer}}</span>
+                 <span class="caret"> </span>
+               </a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a data-ng-click="setRefresh(15)" href="#">15 Seconds</a></li>
+                <li><a data-ng-click="setRefresh(30)" href="#">30 Seconds</a></li>
+                <li><a data-ng-click="setRefresh(60)" href="#">1 Minute</a></li>
+                <li><a data-ng-click="setRefresh(300)" href="#">5 Minutes</a></li>
+                <li><a data-ng-click="setRefresh(900)" href="#">15 Minutes</a></li>
+                <li><a data-ng-click="setRefresh(null)" href="#">Disabled</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Desktop Alerts<span class="badge alert-danger">Disabled</span></a>  </li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
 
 
     <div id="wrapper">
-
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav" data-ng-controller="sidebar">
                 <li data-ng-repeat="jail in jails">
@@ -39,7 +64,7 @@
                       <span data-ng-if="activeJail.name !== jail" class="glyphicon glyphicon-chevron-left"></span>
                     </a>
                     <ul class="sidebar-nav-second">
-                      <li class="sidebar-nav-second-items" ng-show="activeJail.name === jail">
+                      <li class="sidebar-nav-second-items" data-ng-show="activeJail.name === jail">
                         <a data-ng-click="setCurrentView('Overview')" href="#">Overview</a>
                         <a data-ng-click="setCurrentView('failedIPs')" href="#">Failed IPs</a>
                         <a data-ng-click="setCurrentView('failRegexes')" href="#">Fail Regexes</a>
@@ -94,7 +119,7 @@
                 <form class="col-md-12 form-inline" role="form">
                   <div class="form-group">
                     <label class="sr-only" for="addFailRegex">Fail Regex</label>
-                    <textarea class="form-control" ng-model="addFailRegex" placeholder="Enter Fail Regex"> </textarea>
+                    <textarea class="form-control" data-ng-model="addFailRegex" placeholder="Enter Fail Regex"> </textarea>
                   </div>
                   <button type="submit" class="btn btn-danger" data-ng-click="clickAddFailRegex(addFailRegex)">Add Fail Regex</button>
                 </form>
@@ -130,7 +155,7 @@
                 <form class="col-md-12 form-inline" role="form">
                   <div class="form-group">
                     <label class="sr-only" for="banIPAddress">IP Address</label>
-                    <input type="text" class="form-control" id="banIPAddress" ng-model="banIPAddress" placeholder="Enter IP Address">
+                    <input type="text" class="form-control" id="banIPAddress" data-ng-model="banIPAddress" placeholder="Enter IP Address">
                   </div>
                   <button type="submit" class="btn btn-danger" data-ng-click="clickBanIPAddress(banIPAddress)">Ban IP Address</button>
                 </form>
