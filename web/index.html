@@ -9,6 +9,7 @@
       <title>fail2web</title>
   </head>
   <body>
+
     <div data-ng-controller="notificationBar" >
       <div class="notification notification-{{notification.type}}" data-ng-repeat="notification in notifications">
         {{notification.message}}
@@ -19,60 +20,13 @@
       </div>
     </div>
 
-    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation" data-ng-controller="navbar">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">fail2web</a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                 Refresh
-                 <span data-ng-if="settings.refresh === null" class="badge alert-danger">Disabled</span>
-                 <span data-ng-if="settings.refresh !== null" class="badge alert-success">{{refreshDetails.timer}}</span>
-                 <span class="caret"> </span>
-               </a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a data-ng-click="setRefresh(15)" href="#">15 Seconds</a></li>
-                <li><a data-ng-click="setRefresh(30)" href="#">30 Seconds</a></li>
-                <li><a data-ng-click="setRefresh(60)" href="#">1 Minute</a></li>
-                <li><a data-ng-click="setRefresh(300)" href="#">5 Minutes</a></li>
-                <li><a data-ng-click="setRefresh(900)" href="#">15 Minutes</a></li>
-                <li><a data-ng-click="setRefresh(null)" href="#">Disabled</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Desktop Alerts<span class="badge alert-danger">Disabled</span></a>  </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
+    <navbar>
+    </navbar>
 
     <div id="wrapper">
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav" data-ng-controller="sidebar">
-                <li data-ng-repeat="jail in jails">
-                    <a href="#" data-ng-click="setActiveJail(jail)">
-                      {{jail}}
-                      <span data-ng-if="activeJail.name === jail" class="glyphicon glyphicon-chevron-down"></span>
-                      <span data-ng-if="activeJail.name !== jail" class="glyphicon glyphicon-chevron-left"></span>
-                    </a>
-                    <ul class="sidebar-nav-second">
-                      <li class="sidebar-nav-second-items" data-ng-show="activeJail.name === jail">
-                        <a data-ng-click="setCurrentView('Overview')" href="#">Overview</a>
-                        <a data-ng-click="setCurrentView('failedIPs')" href="#">Failed IPs</a>
-                        <a data-ng-click="setCurrentView('failRegexes')" href="#">Fail Regexes</a>
-                       </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+
+        <sidebar>
+        </sidebar>
 
         <div id="page-content-wrapper" data-ng-controller="jailDisplay">
             <div class="page-content inset" data-ng-switch="activeJail.currentView">

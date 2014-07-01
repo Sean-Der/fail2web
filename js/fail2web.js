@@ -9,46 +9,16 @@ var angular = require('angular'),
 
 insertCss(fs.readFileSync('node_modules/bootstrap/dist/css/bootstrap.min.css'));
 
-insertCss(fs.readFileSync('css/sidebar.css'));
 insertCss(fs.readFileSync('css/notificationBar.css'));
-insertCss(fs.readFileSync('css/navbar.css'));
 insertCss(fs.readFileSync('css/base.css'));
 
-
-angular.module('fail2web', [require('./services/globalConfig'),
-                            require('./services/activeJail'),
+angular.module('fail2web', [require('./services/activeJail'),
                             require('./services/notifications'),
-                            require('./services/settings'),
+                            require('./controllers/navbar'),
+                            require('./controllers/sidebar'),
                             'ngAnimate',
                             'ui.bootstrap']).
-  controller('navbar', ['$scope', 'settings', function($scope, settings) {
-    $scope.settings = settings.get();
-    $scope.refreshDetails = settings.getRefreshDetails();
-
-    $scope.setRefresh = function(refresh) {
-      settings.set({refresh: refresh});
-    };
-
-  }]).
-  controller('sidebar', ['$scope', 'globalConfig', '$http', '$q', 'activeJail', 'notifications', function($scope, globalConfig, $http, $q, activeJail, notifications) {
-    $scope.activeJail = activeJail.get();
-    $scope.setActiveJail = function(jail) {
-      activeJail.set(jail);
-    };
-
-    $scope.setCurrentView = function(view) {
-        activeJail.setCurrentView(view);
-    };
-
-    globalConfig.then(function(config) {
-      $http({method: 'GET', url: config.fail2rest + 'global/status'}).
-        success(function(jails) {
-          $scope.jails = jails;
-          activeJail.set(jails[0]);
-        }).
-        error(notifications.fromHTTPError);
-    });
-  }]).controller('jailDisplay', ['$scope', 'activeJail',  function($scope, activeJail) {
+  controller('jailDisplay', ['$scope', 'activeJail',  function($scope, activeJail) {
     $scope.clickBanIPAddress = function(ipAddress) {
         activeJail.banIPAddress(ipAddress);
     };

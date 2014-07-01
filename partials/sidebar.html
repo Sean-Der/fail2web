@@ -1,0 +1,18 @@
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li data-ng-repeat="jail in jails">
+            <a href="#" data-ng-click="setActiveJail(jail)">
+              {{jail}}
+              <span data-ng-if="activeJail.name === jail" class="glyphicon glyphicon-chevron-down"></span>
+              <span data-ng-if="activeJail.name !== jail" class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <ul class="sidebar-nav-second">
+              <li class="sidebar-nav-second-items" data-ng-show="activeJail.name === jail">
+                <a data-ng-click="setCurrentView('Overview')" href="#">Overview</a>
+                <a data-ng-click="setCurrentView('failedIPs')" href="#">Failed IPs</a>
+                <a data-ng-click="setCurrentView('failRegexes')" href="#">Fail Regexes</a>
+               </li>
+            </ul>
+        </li>
+    </ul>
+</div>
