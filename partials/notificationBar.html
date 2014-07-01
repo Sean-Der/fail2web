@@ -1,0 +1,9 @@
+<div>
+  <div class="notification notification-{{notification.type}}" data-ng-repeat="notification in notifications">
+    {{notification.message}}
+    <span>
+      {{notification.amount}} alert(s)
+      <span data-ng-click="removeNotification(notification.message)" class="glyphicon glyphicon-remove"></span>
+    </span>
+  </div>
+</div>

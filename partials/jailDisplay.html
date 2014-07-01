@@ -1,0 +1,90 @@
+<div id="page-content-wrapper">
+    <div class="page-content inset" data-ng-switch="activeJail.currentView">
+
+      <div class="row" data-ng-switch-when="Overview">
+
+        <form role="form">
+          <div class="form-group">
+            <label for="findTimeInput">Find Time</label>
+            <input type="number" class="form-control" id="findTimeInput" data-ng-model="activeJail.data.findTime" min="0">
+          </div>
+
+          <div class="form-group">
+            <label for="maxRetryInput">Max Retry</label>
+            <input type="number" class="form-control" id="maxRetryInput" data-ng-model="activeJail.data.maxRetry" min="0">
+          </div>
+
+          <div class="form-group">
+            <label for="useDNSInput">Use DNS</label>
+            <select class="form-control" id="useDNSInput" data-ng-model="activeJail.data.useDNS" data-ng-options="o for o in ['yes', 'warn', 'no']">
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-default" data-ng-click="clickOverviewUpdate()">Update</button>
+        </form>
+
+        <div class="col-md-12">
+          <h4>fileList</h4>
+          <p class="well" data-ng-repeat="file in activeJail.data.fileList"> {{file}} </p>
+        </div>
+
+      </div>
+
+      <div class="row" data-ng-switch-when="failRegexes">
+        <div class="col-md-12">
+          <h4>Fail Regexes</h4>
+          <div class="list-group">
+            <a href="#" data-ng-click="clickDeleteFailRegex(regex)" class="list-group-item" data-ng-repeat="regex in activeJail.data.failRegexes track by $index">
+              {{regex}} <span style="color: red" class="glyphicon glyphicon-remove"></span>
+            </a>
+          </div>
+        </div>
+
+        <form class="col-md-12 form-inline" role="form">
+          <div class="form-group">
+            <label class="sr-only" for="addFailRegex">Fail Regex</label>
+            <textarea class="form-control" data-ng-model="addFailRegex" placeholder="Enter Fail Regex"> </textarea>
+          </div>
+          <button type="submit" class="btn btn-danger" data-ng-click="clickAddFailRegex(addFailRegex)">Add Fail Regex</button>
+        </form>
+      </div>
+
+      <div class="row" data-ng-switch-when="failedIPs">
+
+        <div class="col-md-12">
+          <h4>Total Failed - {{activeJail.data.totalFailed}}</h4>
+        </div>
+
+        <div class="col-md-12">
+          <h4>Total Banned - {{activeJail.data.totalBanned}}</h4>
+        </div>
+
+        <div class="col-md-12">
+          <h4>Currently Banned- {{activeJail.data.currentlyBanned}}</h4>
+        </div>
+
+        <div class="col-md-12">
+          <h4>Currently Failed - {{activeJail.data.currentlyFailed}}</h4>
+        </div>
+
+        <div class="col-md-12">
+          <h4>IP List</h4>
+          <div class="list-group">
+            <a href="#" data-ng-click="clickUnBanIPAddress(ip)" class="list-group-item" data-ng-repeat="ip in activeJail.data.IPList">
+              {{ip}} <span style="color: red" class="glyphicon glyphicon-remove"></span>
+            </a>
+          </div>
+        </div>
+
+        <form class="col-md-12 form-inline" role="form">
+          <div class="form-group">
+            <label class="sr-only" for="banIPAddress">IP Address</label>
+            <input type="text" class="form-control" id="banIPAddress" data-ng-model="banIPAddress" placeholder="Enter IP Address">
+          </div>
+          <button type="submit" class="btn btn-danger" data-ng-click="clickBanIPAddress(banIPAddress)">Ban IP Address</button>
+        </form>
+      </div>
+
+    </div>
+</div>
+
