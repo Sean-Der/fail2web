@@ -5,9 +5,11 @@ module.exports = 'fail2web.settings';
 var angular = require('angular'),
     _       = require('lodash');
 
-angular.module(module.exports, [require('./activeJail')]).
-  service('settings', ['$interval', 'activeJail', function($interval, activeJail) {
-    var settings = {refresh: null},
+angular.module(module.exports, [require('./activeJail'),
+                                require('./notifications')]).
+  service('settings', ['$interval', 'activeJail', 'notifications', '$window', function($interval, activeJail, notifications, $window) {
+    var settings = {refresh: null,
+                    desktopNotifications: false},
         refreshDetails = {promise: null, timer: 0},
         refreshDetailsCallback = function() {
           if (refreshDetails.timer === 1) {
@@ -46,7 +48,25 @@ angular.module(module.exports, [require('./activeJail')]).
           }
         }
 
-
+        if (!_.isUndefined(newSettings.desktopNotifications)) {
+          if (newSettings.desktopNotifications) {
+            if (_.isUndefined($window.Notification)) {
+                notifications.add({message: 'Desktop Notifications are not supported by your browser', type: 'error' });
+            }  else if ($window.Notification.permission === 'granted') {
+              settings.desktopNotifications = true;
+            } else if ($window.Notification.permission !== 'denied') {
+              $window.Notification.requestPermission(function (permission) {
+                $window.Notification.permission = permission;
+                if (permission === 'granted') {
+                  settings.desktopNotifications = true;
+                }
+              });
+            }
+          } else {
+            settings.desktopNotifications = false;
+          }
+        }
       }
+
     };
 }]);

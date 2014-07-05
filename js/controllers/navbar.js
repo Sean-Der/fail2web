@@ -21,6 +21,10 @@ angular.module(module.exports, [require('../services/settings')]).
         $scope.setRefresh = function(refresh) {
           settings.set({refresh: refresh});
         };
+
+        $scope.setDesktopNotifications = function(desktopNotifications) {
+          settings.set({desktopNotifications: desktopNotifications});
+        };
       }
     };
 }]);
