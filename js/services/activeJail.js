@@ -9,6 +9,7 @@ angular.module(module.exports, [require('./globalConfig')]).
   service('activeJail', ['$http', 'globalConfig', 'notifications', function($http, globalConfig, notifications) {
     var activeJail = {name: null,
                       currentView: '',
+                      testFailRegex: {},
                       data: {} };
     return {
       set: function(name) {
@@ -37,6 +38,7 @@ angular.module(module.exports, [require('./globalConfig')]).
                   notifications.add({message: ip + ' has been banned', type: 'warning'});
                 });
               }
+              activeJail.testFailRegex = {};
               activeJail.data = data;
           }.bind(this)).
             error(notifications.fromHTTPError);
@@ -104,6 +106,15 @@ angular.module(module.exports, [require('./globalConfig')]).
       setUseDNS: function(useDNS) {
         globalConfig.then(function(config) {
           $http({method: 'POST', data: {UseDNS: useDNS}, url: config.fail2rest + 'jail/' + activeJail.name + '/usedns'}).
+          error(notifications.fromHTTPError);
+        });
+      },
+      testFailRegex: function(failRegex) {
+        globalConfig.then(function(config) {
+          $http({method: 'POST', data: {FailRegex: failRegex}, url: config.fail2rest + 'jail/' + activeJail.name + '/testfailregex'}).
+          success(function(data) {
+            activeJail.testFailRegex = data;
+          }).
           error(notifications.fromHTTPError);
         });
       }

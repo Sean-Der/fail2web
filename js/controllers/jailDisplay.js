@@ -25,6 +25,9 @@ angular.module(module.exports, [require('../services/activeJail')]).
         $scope.clickAddFailRegex = function(regex) {
           activeJail.addFailRegex(regex);
         };
+        $scope.clickTestFailRegex = function(regex) {
+          activeJail.testFailRegex(regex);
+        };
         $scope.clickOverviewUpdate = function() {
           activeJail.setMaxRetry($scope.activeJail.data.maxRetry);
           activeJail.setFindTime($scope.activeJail.data.findTime);

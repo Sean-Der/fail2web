@@ -47,6 +47,28 @@
           </div>
           <button type="submit" class="btn btn-danger" data-ng-click="clickAddFailRegex(addFailRegex)">Add Fail Regex</button>
         </form>
+
+        <div class="col-md-12">
+          <h4>Test Fail Regexes</h4>
+
+          <div data-ng-repeat="(jail, lines) in activeJail.testFailRegex">
+            <h5> {{jail}} </h5>
+            <ul class="list-unstyled" data-ng-repeat="line in lines">
+              <li data-ng-class="{'text-danger': line.Match}"> {{line.Line}} </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <form class="col-md-12 form-inline" role="form">
+          <div class="form-group">
+            <label class="sr-only" for="testFailRegex">Fail Regex</label>
+            <textarea class="form-control" data-ng-model="testFailRegex" placeholder="Enter Fail Regex"> </textarea>
+          </div>
+          <button type="submit" class="btn btn-danger" data-ng-click="clickTestFailRegex(testFailRegex)">Test Fail Regex</button>
+        </form>
+
+
       </div>
 
       <div class="row" data-ng-switch-when="failedIPs">
