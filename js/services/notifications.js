@@ -6,15 +6,19 @@ var angular = require('angular'),
     _       = require('lodash');
 
 angular.module(module.exports, []).
-  service('notifications', [function() {
+  service('notifications', ['$window', '$injector', function($window, $injector) {
     var notifications = [],
         notificationsService = {
           add: function(notification) {
-            var index = _.findIndex(notifications, notification);
-            if (index === -1) {
-              notifications.push(_.merge(notification, {amount: 1}));
+            if ($injector.get('settings').get().desktopNotifications === true) {
+              new $window.Notification(notification.message); // jshint ignore:line
             } else {
-              notifications[index].amount += 1;
+              var index = _.findIndex(notifications, notification);
+              if (index === -1) {
+                notifications.push(_.merge(notification, {amount: 1}));
+              } else {
+                notifications[index].amount += 1;
+              }
             }
           },
           remove: function(message) {

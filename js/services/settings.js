@@ -7,7 +7,7 @@ var angular = require('angular'),
 
 angular.module(module.exports, [require('./activeJail'),
                                 require('./notifications')]).
-  service('settings', ['$interval', 'activeJail', 'notifications', '$window', function($interval, activeJail, notifications, $window) {
+  service('settings', ['$interval', 'activeJail', '$window', 'notifications', function($interval, activeJail, $window, notifications) {
     var settings = {refresh: null,
                     desktopNotifications: false},
         refreshDetails = {promise: null, timer: 0},
@@ -65,6 +65,7 @@ angular.module(module.exports, [require('./activeJail'),
           } else {
             settings.desktopNotifications = false;
           }
+
         }
       }
 
