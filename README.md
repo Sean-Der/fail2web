@@ -16,6 +16,8 @@ with the following features planned in the future
 * **More Jail Controls** - Create new jails and expose more settings for current jails
 
 ![alt text](http://i.imgur.com/Duy0aKM.gif "fail2web Demo")
+![alt text](http://i.imgur.com/vDKYnql.gif "fail2web Demo2")
+
 
 ## Installing
 ###Development
