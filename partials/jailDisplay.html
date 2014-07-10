@@ -33,11 +33,12 @@
       <div class="row" data-ng-switch-when="failRegexes">
         <div class="col-md-12">
           <h4>Fail Regexes</h4>
-          <div class="list-group">
-            <a href="#" data-ng-click="clickDeleteFailRegex(regex)" class="list-group-item" data-ng-repeat="regex in activeJail.data.failRegexes track by $index">
-              {{regex}} <span style="color: red" class="glyphicon glyphicon-remove"></span>
-            </a>
-          </div>
+          <ul data-ng-repeat="regex in activeJail.data.failRegexes track by $index">
+            <li>
+                {{regex}}
+                <span style="color: red" data-ng-click="clickDeleteFailRegex(regex)" class="glyphicon glyphicon-remove"></span>
+            </li>
+          </ul>
         </div>
 
         <form class="col-md-12 form-inline" role="form">
@@ -91,11 +92,13 @@
 
         <div class="col-md-12">
           <h4>IP List</h4>
-          <div class="list-group">
-            <a href="#" data-ng-click="clickUnBanIPAddress(ip)" class="list-group-item" data-ng-repeat="ip in activeJail.data.IPList">
-              {{ip}} <span style="color: red" class="glyphicon glyphicon-remove"></span>
-            </a>
-          </div>
+          <ul data-ng-repeat="ip in activeJail.data.IPList">
+            <li>
+                {{ip}}
+                <span style="color: blue" data-ng-click="clickRunWHOIS(ip)" class="glyphicon glyphicon-flag"></span>
+                <span style="color: red" data-ng-click="clickUnBanIPAddress(ip)" class="glyphicon glyphicon-remove"></span>
+            </li>
+          </ul>
         </div>
 
         <form class="col-md-12 form-inline" role="form">
