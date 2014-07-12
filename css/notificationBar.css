@@ -1,4 +1,4 @@
-.notification-bar{
+.notification-bar {
   color: white;
   position: fixed;
   z-index: 100000;
@@ -30,4 +30,30 @@
 
 .notification-info {
   background-color: green;
+}
+.notification {
+  line-height:40px;
+}
+
+.notification.ng-move,
+.notification.ng-enter,
+.notification.ng-leave {
+  -webkit-transition:all linear 0.5s;
+  -o-transition:all linear 0.5s;
+  -moz-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.notification.ng-leave.ng-leave-active,
+.notification.ng-move,
+.notification.ng-enter {
+  opacity:0;
+  max-height:0;
+}
+
+.notification.ng-leave,
+.notification.ng-move.ng-move-active,
+.notification.ng-enter.ng-enter-active {
+  opacity:1;
+  max-height:40px;
 }
