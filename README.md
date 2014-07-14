@@ -81,8 +81,13 @@ SSH tunnel as a socks proxy.
 
 ##Getting Help
 ###IRC
-The #fail2web channel on Freenode is the official channel
+The #fail2web channel on Freenode is the official channel.
+
 Feel free to mention Sean-Der in channel, and I will do my best to help you as soon as possible
+
+If you are using OSX [Adium](https://www.sweetprocess.com/procedures/298/connect-to-irc-channel-with-adium/#.U8Puho1dXR0) is a popular choice
+
+If you are using a Unix clone [Xchat](https://help.ubuntu.com/community/XChatHowto) is a popular choice
 
 ##License
 The MIT License (MIT)
