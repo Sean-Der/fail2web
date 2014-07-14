@@ -79,6 +79,10 @@ and `htpasswd -c YOUR_HTPASSWD_FILE USERNAME` will create it.
 Your other choice would be to serve on the loopback only. You could then use an
 SSH tunnel as a socks proxy.
 
+##Getting Help
+###IRC
+The #fail2web channel on Freenode is the official channel
+Feel free to mention Sean-Der in channel, and I will do my best to help you as soon as possible
 
 ##License
 The MIT License (MIT)
