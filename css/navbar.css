@@ -2,6 +2,10 @@
   background: #000;
   color: #999999;
 }
+.navbar-inverse {
+  border-color: black;
+}
+
 .navbar a {
   color: #999999;
 }

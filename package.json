@@ -27,7 +27,7 @@
   },
   "browser": {
     "angular-ui": "./libs/ui-bootstrap-tpls-0.11.0.min.js",
-    "angular-animate": "./libs/angular-animate-1.2.18.min.js"
+    "angular-animate": "./libs/angular-animate-1.2.19.min.js"
   },
   "browserify-shim": {
     "angular-ui": {
@@ -44,13 +44,13 @@
     }
   },
   "devDependencies": {
-    "watchify": "^0.10.2",
-    "angular": "^1.2.18",
-    "browserify": "^4.1.11",
-    "lodash": "^2.4.1",
-    "browserify-shim": "^3.6.0",
-    "bootstrap": "^3.1.1",
     "insert-css": "^0.2.0",
-    "brfs": "1.0.2"
+    "watchify": "^0.10.2",
+    "lodash": "^2.4.1",
+    "brfs": "1.0.2",
+    "angular": "^1.2.19",
+    "browserify-shim": "^3.6.0",
+    "bootstrap": "^3.2.0",
+    "browserify": "^4.2.1"
   }
 }
