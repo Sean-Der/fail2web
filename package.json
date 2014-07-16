@@ -27,7 +27,9 @@
   },
   "browser": {
     "angular-ui": "./libs/ui-bootstrap-tpls-0.11.0.min.js",
-    "angular-animate": "./libs/angular-animate-1.2.19.min.js"
+    "angular-animate": "./libs/angular-animate-1.2.19.min.js",
+    "angular-charts": "./libs/angular-charts-0.2.4.min.js"
+
   },
   "browserify-shim": {
     "angular-ui": {
@@ -41,7 +43,14 @@
       "depends": [
         "angular"
       ]
+    },
+    "angular-charts": {
+      "exports": null,
+      "depends": [
+        "d3"
+      ]
     }
+
   },
   "devDependencies": {
     "insert-css": "^0.2.0",
@@ -51,6 +60,7 @@
     "angular": "^1.2.19",
     "browserify-shim": "^3.6.0",
     "bootstrap": "^3.2.0",
-    "browserify": "^4.2.1"
+    "browserify": "^4.2.1",
+    "d3": "^3.4.10"
   }
 }
