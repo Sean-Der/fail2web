@@ -5,8 +5,9 @@ module.exports = 'fail2web.activeJail';
 var angular = require('angular'),
     _       = require('lodash');
 
-angular.module(module.exports, [require('./globalConfig')]).
-  service('activeJail', ['$http', 'globalConfig', 'notifications', function($http, globalConfig, notifications) {
+angular.module(module.exports, [require('./globalConfig'),
+                                require('./global')]).
+  service('activeJail', ['$http', 'globalConfig', 'global', 'notifications', function($http, globalConfig, global, notifications) {
     var activeJail = {name: null,
                       currentView: '',
                       testFailRegex: {},
@@ -20,6 +21,9 @@ angular.module(module.exports, [require('./globalConfig')]).
       setCurrentView: function(view) {
         if (['Overview', 'failedIPs', 'failRegexes'].indexOf(view) === -1) {
           throw view + ' is not a valid currentView';
+        }
+        if (view === 'failedIPs') {
+          global.refreshBans();
         }
         activeJail.currentView = view;
       },

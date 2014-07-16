@@ -9,10 +9,10 @@ fail2ban allows you to administer the following
 * **Per Jail Config** - Configure find time, max retry and usedns per jail, and view the filelist per jail
 * **Alerting** - Notifications when an IP address is banned and unbanned with a user configurable time span
 * **Regex Testing** - Testing ignore+fail regexes on your current logs to quickly build and debug regexes
+* **Reporting** - Expose the time that an IP address was banned, and show trends via visualizations
 
 with the following features planned in the future
 
-* **Reporting** - Expose the time that an IP address was banned, and show trends via visualizations
 * **More Jail Controls** - Create new jails and expose more settings for current jails
 
 ![alt text](http://i.imgur.com/Duy0aKM.gif "fail2web Demo")

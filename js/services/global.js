@@ -10,12 +10,15 @@ angular.module(module.exports, [require('./globalConfig')]).
       bans: []
     };
     return {
+      get: function() {
+        return global;
+      },
       refreshBans: function() {
         globalConfig.then(function(config) {
           $http({method: 'GET',  url: config.fail2rest + 'global/bans'}).
           success(function(data) {
             global.bans.length = 0;
-            global.push.appyly(global.push, data);
+            global.bans.push.apply(global.bans, data);
           }).
           error(notifications.fromHTTPError);
         });

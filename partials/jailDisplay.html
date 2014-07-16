@@ -72,44 +72,74 @@
 
       </div>
 
-      <div class="row" data-ng-switch-when="failedIPs">
-
-        <div class="col-md-12">
-          <h4>Total Failed - {{activeJail.data.totalFailed}}</h4>
-        </div>
-
-        <div class="col-md-12">
-          <h4>Total Banned - {{activeJail.data.totalBanned}}</h4>
-        </div>
-
-        <div class="col-md-12">
-          <h4>Currently Banned- {{activeJail.data.currentlyBanned}}</h4>
-        </div>
-
-        <div class="col-md-12">
-          <h4>Currently Failed - {{activeJail.data.currentlyFailed}}</h4>
-        </div>
-
-        <div class="col-md-12">
-          <h4>IP List</h4>
-          <ul data-ng-repeat="ip in activeJail.data.IPList">
-            <li>
-                {{ip}}
-                <span style="color: blue" data-ng-click="clickRunWHOIS(ip)" class="glyphicon glyphicon-flag"></span>
-                <span style="color: red" data-ng-click="clickUnBanIPAddress(ip)" class="glyphicon glyphicon-remove"></span>
-            </li>
-          </ul>
-        </div>
-
-        <form class="col-md-12 form-inline" role="form">
-          <div class="form-group">
-            <label class="sr-only" for="banIPAddress">IP Address</label>
-            <input type="text" class="form-control" id="banIPAddress" data-ng-model="banIPAddress" placeholder="Enter IP Address">
+      <div data-ng-switch-when="failedIPs">
+        <div class="row">
+          <div class="col-md-12">
+            <h4>Total Failed - {{activeJail.data.totalFailed}}</h4>
           </div>
-          <button type="submit" class="btn btn-danger" data-ng-click="clickBanIPAddress(banIPAddress)">Ban IP Address</button>
-        </form>
-      </div>
 
+          <div class="col-md-12">
+            <h4>Total Banned - {{activeJail.data.totalBanned}}</h4>
+          </div>
+
+          <div class="col-md-12">
+            <h4>Currently Banned- {{activeJail.data.currentlyBanned}}</h4>
+          </div>
+
+          <div class="col-md-12">
+            <h4>Currently Failed - {{activeJail.data.currentlyFailed}}</h4>
+          </div>
+
+          <div class="col-md-12">
+            <h4>IP List</h4>
+            <ul data-ng-repeat="ip in activeJail.data.IPList">
+              <li>
+                  {{ip}}
+                  <span style="color: blue" data-ng-click="clickRunWHOIS(ip)" class="glyphicon glyphicon-flag"></span>
+                  <span style="color: red" data-ng-click="clickUnBanIPAddress(ip)" class="glyphicon glyphicon-remove"></span>
+              </li>
+            </ul>
+          </div>
+
+          <form class="col-md-12 form-inline" role="form">
+            <div class="form-group">
+              <label class="sr-only" for="banIPAddress">IP Address</label>
+              <input type="text" class="form-control" id="banIPAddress" data-ng-model="banIPAddress" placeholder="Enter IP Address">
+            </div>
+            <button type="submit" class="btn btn-danger" data-ng-click="clickBanIPAddress(banIPAddress)">Ban IP Address</button>
+          </form>
+        </div>
+
+        <div class="row" style="padding-top: 2em">
+
+          <div class="col-md-12">
+            <h4> Ban History </h4>
+          </div>
+          <div data-ac-chart="'pie'"
+               data-ac-data="chartData"
+               data-ac-config="chartConfig"
+               class="chart">
+          </div>
+
+          <table class="table table-striped" >
+            <tr>
+              <th> Date </th>
+              <th> IP </th>
+              <th> Matches </th>
+            </tr>
+            <tr data-ng-repeat="ban in groupedBans[hoveredHost]">
+                <td> {{ban.TimeOfBanString}} </td>
+                <td> {{ban.IP}} </td>
+                <td>
+                    <div data-ng-repeat="match in ban.Data.Matches">
+                        {{match}}
+                    </div>
+                </td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
     </div>
 </div>
 
