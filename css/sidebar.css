@@ -60,7 +60,7 @@
 .sidebar-nav-second-items.ng-hide-add.ng-hide-add-active,
 .sidebar-nav-second-items.ng-hide-remove {
   opacity:0;
-  line-height: 0;
+  line-height: 0px;
 }
 
 .sidebar-nav-second-items.ng-hide-add,
