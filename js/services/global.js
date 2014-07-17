@@ -5,7 +5,7 @@ module.exports = 'fail2web.global';
 var angular = require('angular');
 
 angular.module(module.exports, [require('./globalConfig')]).
-  service('global', ['$http', 'globalConfig', 'notifications', function($http, globalConfig, notifications) {
+  service('global', ['$http', 'globalConfig', function($http, globalConfig) {
     var global = {
       bans: []
     };
@@ -20,7 +20,9 @@ angular.module(module.exports, [require('./globalConfig')]).
             global.bans.length = 0;
             global.bans.push.apply(global.bans, data);
           }).
-          error(notifications.fromHTTPError);
+          error(function() {
+            global.bans = new Error('persisted bans are not supported by your fail2ban instance');
+          });
         });
       }
     };

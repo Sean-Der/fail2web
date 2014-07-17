@@ -2,3 +2,7 @@
   height: 500px;
   width: 500px;
 }
+
+.error-well {
+  background: #f2dede;
+}

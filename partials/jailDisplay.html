@@ -115,28 +115,39 @@
           <div class="col-md-12">
             <h4> Ban History </h4>
           </div>
-          <div data-ac-chart="'pie'"
-               data-ac-data="chartData"
-               data-ac-config="chartConfig"
-               class="chart">
-          </div>
+          <div data-ng-if="hasPersistantDB">
+            <div data-ac-chart="'pie'"
+              data-ac-data="chartData"
+              data-ac-config="chartConfig"
+              class="chart">
+            </div>
 
-          <table class="table table-striped" >
-            <tr>
-              <th> Date </th>
-              <th> IP </th>
-              <th> Matches </th>
-            </tr>
-            <tr data-ng-repeat="ban in groupedBans[hoveredHost]">
+            <table class="table table-striped" >
+              <tr>
+                <th> Date </th>
+                <th> IP </th>
+                <th> Matches </th>
+              </tr>
+              <tr data-ng-repeat="ban in groupedBans[hoveredHost]">
                 <td> {{ban.TimeOfBanString}} </td>
                 <td> {{ban.IP}} </td>
                 <td>
-                    <div data-ng-repeat="match in ban.Data.Matches">
-                        {{match}}
-                    </div>
+                  <div data-ng-repeat="match in ban.Data.Matches">
+                    {{match}}
+                  </div>
                 </td>
-            </tr>
-          </table>
+              </tr>
+            </table>
+          </div>
+
+          <div class="col-md-12" data-ng-if="!hasPersistantDB">
+            <div class="well well-lg error-well">
+              Your fail2rest instance is reporting that you don't have a persisted DB  <br/> <br/>
+
+              This might mean you are running on old version of fail2ban (pre 0.9), don't have
+              the persisted DB enabled or don't have the permissions to read it.
+            </div>
+          </div>
 
         </div>
       </div>

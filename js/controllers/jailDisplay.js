@@ -58,6 +58,7 @@ angular.module(module.exports, [ require('../services/activeJail'),
           });
         };
 
+        $scope.hasPersistantDB = false;
         $scope.hoveredHost = '';
         $scope.chartConfig = {
             tooltips: true,
@@ -74,27 +75,33 @@ angular.module(module.exports, [ require('../services/activeJail'),
             data: [],
         };
         $scope.groupedBans = {};
-        var rebuildCharts = function() {
-          var activeJailBans = _.filter($scope.global.bans, function(ban) {
-            return ban.Jail === $scope.activeJail.name;
-          });
-          activeJailBans = _.map(activeJailBans, function(ban) {
-            ban.TimeOfBanString = new Date(ban.TimeOfBan * 1000).toString();
-            return ban;
-          });
-          $scope.groupedBans = _.groupBy(activeJailBans, function(ban) {
-            return ban.IP;
-          });
 
-          $scope.chartData.series = _.keys($scope.groupedBans);
-          $scope.chartData.data.length = 0;
-          _.forEach($scope.groupedBans, function(value, key) {
-            $scope.chartData.data.push({
-              x: key,
-              y: [value.length],
-              tooltip: key
+        var rebuildCharts = function() {
+          if ($scope.global.bans instanceof Error) {
+            $scope.hasPersistantDB = false;
+          } else {
+            $scope.hasPersistantDB = true;
+            var activeJailBans = _.filter($scope.global.bans, function(ban) {
+              return ban.Jail === $scope.activeJail.name;
             });
-          });
+            activeJailBans = _.map(activeJailBans, function(ban) {
+              ban.TimeOfBanString = new Date(ban.TimeOfBan * 1000).toString();
+              return ban;
+            });
+            $scope.groupedBans = _.groupBy(activeJailBans, function(ban) {
+              return ban.IP;
+            });
+
+            $scope.chartData.series = _.keys($scope.groupedBans);
+            $scope.chartData.data.length = 0;
+            _.forEach($scope.groupedBans, function(value, key) {
+              $scope.chartData.data.push({
+                x: key,
+                y: [value.length],
+                tooltip: key
+              });
+            });
+          }
         };
 
         $scope.$watch('global.bans', rebuildCharts, true);
