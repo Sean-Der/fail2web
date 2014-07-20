@@ -35,23 +35,7 @@ with the following features planned in the future
 There is no production release of fail2web, but I plan to have one soon.
 
 ##Deploying and Configuration
-To run fail2web you should host it via a HTTP server, the following is an example nginx config to do so
-
-    server {
-        listen       80;
-        server_name  YOUR_SERVER_NAME;
-
-        auth_basic "Restricted";
-        auth_basic_user_file YOUR_HTPASSWD_FILE;
-
-        location / {
-            root FAIL2WEB_WEB_FOLDER;
-        }
-        location /api/ {
-            proxy_pass         http://127.0.0.1:5000/;
-            proxy_redirect     off;
-        }
-    }
+To run fail2web you should host it via a HTTP server, you can find example HTTP configs [here](https://github.com/Sean-Der/fail2web/tree/master/http-configs)
 
 Fail2web has only one configuration option available via config.json in the root of the web folder.
 This config option allows you to specify the path to your fail2rest handler. Currently the config.json uses /api/
