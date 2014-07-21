@@ -6,3 +6,7 @@
 .error-well {
   background: #f2dede;
 }
+
+.icon-link {
+  cursor: pointer;
+}
