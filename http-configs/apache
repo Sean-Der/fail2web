@@ -1,0 +1,14 @@
+<VirtualHost *:80>
+	DocumentRoot FAIL2WEB_WEB_FOLDER
+
+	<Location /*>
+		AuthType Basic
+		AuthName "Restricted"
+		AuthBasicProvider file
+		AuthUserFile YOUR_HTPASSWD_FILE
+		Require valid-user
+	</Location>
+
+	ProxyPass /api http://127.0.0.1:5000
+
+</VirtualHost>
