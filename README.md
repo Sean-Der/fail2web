@@ -18,50 +18,49 @@ with the following features planned in the future
 ![alt text](http://i.imgur.com/Duy0aKM.gif "fail2web Demo")
 ![alt text](http://i.imgur.com/vDKYnql.gif "fail2web Demo2")
 
+##Requirements
+fail2web communicates with fail2ban via a REST server called [fail2rest](https://github.com/Sean-Der/fail2rest)
+before fail2web can be used you will need an operational fail2rest instance.
 
-## Installing
+fail2web has been reported to work on IE8 or newer, but is not actively tested on older platforms.
+
+##Installing
+###Production
+To install the production build of fail2web download the newest release. A fully built release will then be in the
+`web` directory. Now you just need to serve the index.html, you can find further instructions [here](https://github.com/Sean-Der/fail2web#deploying-and-configuration)
+
 ###Development
-
 * **Install build requirements**
     * nodejs and npm for browserify (not a runtime requirement) [Installing Node.js](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager)
-    * Git
 * **Install libraries**
     * execute `npm install` in the root of the fail2web repository
 * **Building**
     * When writing code run `npm run watch` this will rebuild web/bundle.js on every change
     * When deploying run `npm run build` this will build once and exit
 
-###Production
-There is no production release of fail2web, but I plan to have one soon.
-
 ##Deploying and Configuration
-To run fail2web you should host it via a HTTP server, you can find example HTTP configs [here](https://github.com/Sean-Der/fail2web/tree/master/http-configs)
+fail2web is best accessed via a HTTP server, you can find example HTTP server configs [here](https://github.com/Sean-Der/fail2web/tree/master/http-configs)
 
 Fail2web has only one configuration option available via config.json in the root of the web folder.
 This config option allows you to specify the path to your fail2rest handler. Currently the config.json uses /api/
-which is what the above nginx config is also set to do.
+which is what all the example HTTP configs are configured to do.
 
-Fail2web then has to communicate with a fail2rest instance, details on how to configure fail2rest can be found [here](https://github.com/Sean-Der/fail2rest)
-
-###Security
+##Security
 It is very important that you configured fail2rest correctly, a public facing fail2rest server could be very dangerous
 (someone could add inclusive regexes, remove themselves from the banned IP lists etc..)
 
-Out of the box fail2rest has no authentication, and I have no plans of rolling my own authentication. I have used two different methods
-for securing my fail2rest instances.
+Out of the box fail2rest has no authentication, and I have no plans of rolling my own authentication.
 
-####HTTP Auth
-In the nginx example above I have enabled HTTP basic auth with the following lines
-
-        auth_basic "Restricted";
-        auth_basic_user_file YOUR_HTPASSWD_FILE;
+###HTTP Basic Auth
+The HTTP configs are both set to use HTTP basic auth, this and SSL should be the absolute minimum security
+requirements. In both HTTP configs you will see a placeholder with the label of `YOUR_HTPASSWD_FILE`
 
 To generate a HTTPASSWD file you can use the `htpasswd` util distributed with Apache HTTPD
 and `htpasswd -c YOUR_HTPASSWD_FILE USERNAME` will create it.
 
-####Serve on loopback only
-Your other choice would be to serve on the loopback only. You could then use an
-SSH tunnel as a socks proxy.
+###SSH Tunnel
+I also recommend only serving fail2web/fail2rest on loopback only. You would access the server via a
+SSH tunnel, you can find more info [Here](http://www.revsys.com/writings/quicktips/ssh-tunnel.html)
 
 ##Getting Help
 ###IRC
