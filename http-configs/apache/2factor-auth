@@ -1,0 +1,16 @@
+<VirtualHost *:80>
+	DocumentRoot FAIL2WEB_WEB_FOLDER
+
+	<Location /*>
+		AuthType Basic
+		AuthName "TOTP Security"
+		AuthBasicProvider "google_authenticator"
+		Require valid-user
+		GoogleAuthUserPath /path/to/totp_google_authentication_dir/ga_auth/
+		GoogleAuthCookieLife 3600
+		GoogleAuthEntryWindow 2 #The set window of concurrently valid codes as determined by the google-authenticator script when setting up TOTP for a user.
+	</Location>
+
+	ProxyPass /api http://127.0.0.1:5000
+
+</VirtualHost>
