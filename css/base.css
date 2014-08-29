@@ -1,5 +1,4 @@
 #wrapper {
-  padding-left: 250px;
   padding-top: 50px;
   transition: all 0.4s ease 0s;
 }
@@ -12,3 +11,9 @@
   padding: 20px;
 }
 
+
+@media (min-width: 840px) {
+  #wrapper {
+    padding-left: 250px;
+  }
+}

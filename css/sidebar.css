@@ -1,9 +1,5 @@
 #sidebar-wrapper {
-  margin-left: -250px;
-  left: 250px;
-  width: 250px;
   background: #000;
-  position: fixed;
   height: 100%;
   overflow-y: auto;
   z-index: 2;
@@ -11,9 +7,7 @@
 }
 
 .sidebar-nav {
-  position: absolute;
   top: 0;
-  width: 250px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -71,4 +65,18 @@
 
 .inset {
   padding: 20px;
+}
+
+@media (min-width: 840px) {
+  #sidebar-wrapper {
+    position: fixed;
+    margin-left: -250px;
+    left: 250px;
+    width: 250px;
+  }
+
+  .sidebar-nav {
+    position: absolute;
+    width: 250px;
+  }
 }

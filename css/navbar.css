@@ -15,3 +15,65 @@
   text-decoration: none;
 }
 
+@media (max-width: 350px) {
+  .navbar-brand {
+    font-size: 14px !important;
+    padding: 15px 3px !important;
+  }
+}
+
+/* navbar nowrap reset */
+.nav>li {
+  position: relative !important;
+  display: block !important;
+}
+
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+  background-color: #eee !important;
+  border-color: #428bca !important;
+}
+
+.navbar-header {
+  margin-right: 0 !important;
+  margin-left: 0  !important;
+  float: left !important;
+}
+
+.navbar>.container-fluid .navbar-brand {
+  margin-left: -15px !important;
+}
+
+
+.navbar-nav {
+  margin: 0 !important;
+}
+
+.navbar-nav>li {
+  float: left !important;
+}
+
+.navbar-nav>li>a {
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+}
+
+.navbar-right {
+  margin-right: -15px !important;
+  float: right !important;
+}
+
+.navbar-right .dropdown-menu {
+  right: 0 !important;
+  left: auto !important;
+}
+
+.navbar-inverse .navbar-nav>.open>a:focus {
+  color: #fff !important;
+  background-color: #080808 !important;
+}
+
+.open>.dropdown-menu {
+  position: absolute !important;
+  background-color: #fff !important;
+  border: inherit !important;
+}
