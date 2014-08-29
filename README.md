@@ -25,6 +25,8 @@ before fail2web can be used you will need an operational fail2rest instance.
 fail2web has been reported to work on IE8 or newer, but is not actively tested on older platforms.
 
 ##Installing
+Philip Moore has written an excellent guide on how to install fail2web, it can be found [here](https://www.phillmoore.com/9-programming/7-setting-up-fail2web-with-apache)
+
 ###Production
 To install the production build of fail2web download the newest release. A fully built release will then be in the
 `web` directory. Now you just need to serve the index.html, you can find further instructions [here](https://github.com/Sean-Der/fail2web#deploying-and-configuration)
