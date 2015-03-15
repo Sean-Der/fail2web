@@ -25,7 +25,9 @@ before fail2web can be used you will need an operational fail2rest instance.
 fail2web has been reported to work on IE8 or newer, but is not actively tested on older platforms.
 
 ##Installing
-Philip Moore has written an excellent guide on how to install fail2web, it can be found [here](https://www.phillmoore.com/9-programming/7-setting-up-fail2web-with-apache)
+A guide to install fail2web on Ubuntu can be found [here](http://siobud.com/blog/installing-fail2web)
+
+If you find any errors open an PR against the markdown [here](https://github.com/Sean-Der/sioBuD.com/blob/master/lisp/blog/installing-fail2web.md)
 
 ###Production
 To install the production build of fail2web download the newest release. A fully built release will then be in the
